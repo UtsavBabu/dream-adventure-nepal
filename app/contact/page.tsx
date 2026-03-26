@@ -52,6 +52,9 @@ export default function ContactPage() {
     setLoading(false);
   };
 
+  const inputClass =
+    "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[16px] font-medium text-black caret-black placeholder:text-slate-400 outline-none transition focus:border-[#F97316] focus:ring-2 focus:ring-orange-100";
+
   return (
     <main className="min-h-screen bg-[#F8FAFC]">
       <section className="mx-auto max-w-6xl px-6 py-20">
@@ -130,7 +133,7 @@ export default function ContactPage() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#F97316] focus:ring-2 focus:ring-orange-100"
+                  className={inputClass}
                   required
                 />
               </div>
@@ -149,7 +152,7 @@ export default function ContactPage() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#F97316] focus:ring-2 focus:ring-orange-100"
+                  className={inputClass}
                   required
                 />
               </div>
@@ -167,7 +170,7 @@ export default function ContactPage() {
                   value={form.destination}
                   onChange={handleChange}
                   placeholder="Everest, Annapurna, Kathmandu Tour..."
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#F97316] focus:ring-2 focus:ring-orange-100"
+                  className={inputClass}
                   required
                 />
               </div>
@@ -186,7 +189,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   placeholder="Tell us about your travel dates, group size, and what kind of adventure you want."
                   rows={6}
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#F97316] focus:ring-2 focus:ring-orange-100"
+                  className={inputClass}
                   required
                 />
               </div>
