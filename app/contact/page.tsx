@@ -116,8 +116,8 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="sm:col-span-2">
+            <div className="grid gap-4">
+              <div>
                 <label
                   htmlFor="name"
                   className="mb-2 block text-sm font-medium text-slate-700"
@@ -135,7 +135,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div>
                 <label
                   htmlFor="email"
                   className="mb-2 block text-sm font-medium text-slate-700"
@@ -154,7 +154,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div>
                 <label
                   htmlFor="destination"
                   className="mb-2 block text-sm font-medium text-slate-700"
@@ -172,7 +172,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div>
                 <label
                   htmlFor="message"
                   className="mb-2 block text-sm font-medium text-slate-700"
