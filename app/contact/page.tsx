@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, ChangeEvent, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 export default function ContactPage() {
@@ -16,7 +16,7 @@ export default function ContactPage() {
   const [error, setError] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -26,6 +26,12 @@ export default function ContactPage() {
     setLoading(true);
     setSuccess("");
     setError("");
+
+    if (!supabase) {
+      setError("Contact service is not available right now.");
+      setLoading(false);
+      return;
+    }
 
     const { error } = await supabase.from("contacts").insert([
       {
