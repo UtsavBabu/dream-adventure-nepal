@@ -56,5 +56,112 @@ CREATE TRIGGER update_site_content_updated_at
   BEFORE UPDATE ON site_content
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
+-- ============================================
+-- STORAGE: Create buckets for file uploads
+-- ============================================
+
+-- Create gallery-images bucket (public)
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('gallery-images', 'gallery-images', true)
+ON CONFLICT DO NOTHING;
+
+-- Create blog-images bucket (public)
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('blog-images', 'blog-images', true)
+ON CONFLICT DO NOTHING;
+
+-- Create tour-images bucket (public)
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('tour-images', 'tour-images', true)
+ON CONFLICT DO NOTHING;
+
+-- Create city-images bucket (public)
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('city-images', 'city-images', true)
+ON CONFLICT DO NOTHING;
+
+-- Create logo bucket (public)
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('logos', 'logos', true)
+ON CONFLICT DO NOTHING;
+
+-- ============================================
+-- STORAGE POLICIES: Allow admins to upload
+-- ============================================
+
+-- Gallery images - admins can upload, everyone can read
+CREATE POLICY "Admins can upload gallery images" ON storage.objects
+FOR INSERT WITH CHECK (
+  bucket_id = 'gallery-images' AND
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
+CREATE POLICY "Public can read gallery images" ON storage.objects
+FOR SELECT USING (bucket_id = 'gallery-images');
+
+-- Blog images - admins can upload, everyone can read
+CREATE POLICY "Admins can upload blog images" ON storage.objects
+FOR INSERT WITH CHECK (
+  bucket_id = 'blog-images' AND
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
+CREATE POLICY "Public can read blog images" ON storage.objects
+FOR SELECT USING (bucket_id = 'blog-images');
+
+-- Tour images - admins can upload, everyone can read
+CREATE POLICY "Admins can upload tour images" ON storage.objects
+FOR INSERT WITH CHECK (
+  bucket_id = 'tour-images' AND
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
+CREATE POLICY "Public can read tour images" ON storage.objects
+FOR SELECT USING (bucket_id = 'tour-images');
+
+-- City images - admins can upload, everyone can read
+CREATE POLICY "Admins can upload city images" ON storage.objects
+FOR INSERT WITH CHECK (
+  bucket_id = 'city-images' AND
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
+CREATE POLICY "Public can read city images" ON storage.objects
+FOR SELECT USING (bucket_id = 'city-images');
+
+-- Logo - admins can upload, everyone can read
+CREATE POLICY "Admins can upload logos" ON storage.objects
+FOR INSERT WITH CHECK (
+  bucket_id = 'logos' AND
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
+CREATE POLICY "Public can read logos" ON storage.objects
+FOR SELECT USING (bucket_id = 'logos');
+
+-- Admins can delete their own uploads
+CREATE POLICY "Admins can delete uploads" ON storage.objects
+FOR DELETE USING (
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE id = auth.uid() AND role = 'admin'
+  )
+);
+
 -- Insert default content (you can run this after creating the tables)
 -- This will be handled by the application code
