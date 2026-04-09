@@ -33,6 +33,29 @@ CREATE POLICY "Admins can view all admin users" ON admin_users
     )
   );
 
+-- Create contact_messages table for Contact Us submissions
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public inserts for contact messages" ON contact_messages
+  FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admins can read contact messages" ON contact_messages
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM admin_users
+      WHERE id = auth.uid() AND role = 'admin'
+    )
+  );
+
 -- Policies for site_content
 CREATE POLICY "Admins can manage all content" ON site_content
   FOR ALL USING (

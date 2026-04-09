@@ -34,6 +34,15 @@ export default function AdminPage() {
           </div>
         </Link>
 
+        <Link href="/admin/messages">
+          <div className="p-6 bg-slate-800 rounded-xl cursor-pointer hover:bg-slate-700 transition">
+            <h2 className="text-xl font-semibold">Contact Requests</h2>
+            <p className="text-gray-400 mt-2">
+              View submitted contact us messages
+            </p>
+          </div>
+        </Link>
+
         <Link href="/admin/tours">
           <div className="p-6 bg-slate-800 rounded-xl cursor-pointer hover:bg-slate-700 transition">
             <h2 className="text-xl font-semibold">Manage Tours</h2>

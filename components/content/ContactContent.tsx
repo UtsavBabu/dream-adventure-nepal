@@ -5,12 +5,52 @@ import { loadSiteContent, SiteContent } from "@/lib/adminData";
 
 export default function ContactContent() {
   const [content, setContent] = useState<SiteContent | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
     setContent(loadSiteContent());
   }, []);
 
   if (!content) return null;
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("sending");
+    setStatusMessage("");
+
+    const response = await fetch("/api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      setStatus("error");
+      setStatusMessage(result.error || "There was a problem sending your message.");
+      return;
+    }
+
+    setStatus("success");
+    setStatusMessage("Your message has been sent. We will contact you soon.");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#F8FAFC] to-white">
@@ -68,11 +108,26 @@ export default function ContactContent() {
             <p className="text-slate-600 mb-8">
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
-            <form className="space-y-6">
+
+            {status !== 'idle' && (
+              <div
+                className={`mb-6 rounded-2xl p-4 text-sm ${
+                  status === 'success'
+                    ? 'bg-emerald-100 text-emerald-800'
+                    : 'bg-rose-100 text-rose-800'
+                }`}
+              >
+                {statusMessage}
+              </div>
+            )}
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-[#0B1F3A] mb-2">Name</label>
                 <input
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                   placeholder="Your name"
@@ -83,6 +138,8 @@ export default function ContactContent() {
                   <label className="block text-sm font-medium text-[#0B1F3A] mb-2">Email</label>
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                     placeholder="your@email.com"
@@ -92,6 +149,8 @@ export default function ContactContent() {
                   <label className="block text-sm font-medium text-[#0B1F3A] mb-2">Phone</label>
                   <input
                     type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                     placeholder="+977..."
                   />
@@ -101,6 +160,8 @@ export default function ContactContent() {
                 <label className="block text-sm font-medium text-[#0B1F3A] mb-2">Message</label>
                 <textarea
                   rows={5}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   required
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                   placeholder="Tell us about your adventure plans..."
@@ -108,9 +169,10 @@ export default function ContactContent() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#F97316] px-6 py-4 font-semibold text-white text-lg transition hover:bg-[#EA580C]"
+                disabled={status === 'sending'}
+                className="w-full rounded-full bg-[#F97316] px-6 py-4 font-semibold text-white text-lg transition hover:bg-[#EA580C] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
