@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/components/auth/AuthContext";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -16,6 +17,7 @@ const navItems = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState<string>("/logo.svg");
+  const { user, isAdmin, signOut } = useAuth();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -38,6 +40,11 @@ export default function Header() {
     }
   }, []);
 
+  const handleSignOut = async () => {
+    await signOut();
+    setMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -59,12 +66,32 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link
-          href="/contact"
-          className="hidden md:block rounded-full bg-[#F97316] px-6 py-2.5 text-sm font-semibold text-white transition duration-200 hover:scale-105 hover:bg-[#EA580C] shadow-md"
-        >
-          Book Now
-        </Link>
+        {/* Auth Buttons */}
+        <div className="hidden md:flex items-center gap-4">
+          {isAdmin ? (
+            <>
+              <Link
+                href="/admin"
+                className="text-sm font-medium text-slate-700 transition hover:text-[#F97316]"
+              >
+                Admin
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className="text-sm font-medium text-slate-700 transition hover:text-[#F97316]"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="rounded-full bg-[#F97316] px-6 py-2.5 text-sm font-semibold text-white transition duration-200 hover:scale-105 hover:bg-[#EA580C] shadow-md"
+            >
+              Admin Login
+            </Link>
+          )}
+        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -89,13 +116,33 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="rounded-full bg-[#F97316] px-6 py-2.5 text-sm font-semibold text-white text-center transition hover:bg-[#EA580C]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Book Now
-            </Link>
+            <div className="flex flex-col gap-2 pt-2 border-t border-slate-200">
+              {isAdmin ? (
+                <>
+                  <Link
+                    href="/admin"
+                    className="text-sm font-medium text-slate-700 transition hover:text-[#F97316]"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Admin Panel
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="text-sm font-medium text-slate-700 transition hover:text-[#F97316] text-left"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="rounded-full bg-[#F97316] px-6 py-2.5 text-sm font-semibold text-white text-center transition hover:bg-[#EA580C]"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Admin Login
+                </Link>
+              )}
+            </div>
           </nav>
         </div>
       )}
