@@ -1,0 +1,6 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" rx="24" fill="#0B1F3A"/>
+  <path d="M30 80L55 40L75 65L90 35L105 80" stroke="#F97316" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="60" cy="65" r="10" fill="#F97316"/>
+  <text x="50%" y="108" fill="#FFFFFF" font-size="14" font-family="Arial, sans-serif" text-anchor="middle">DAN</text>
+</svg>

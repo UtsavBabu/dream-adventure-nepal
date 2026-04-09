@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -15,12 +15,35 @@ const navItems = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoSrc, setLogoSrc] = useState<string>("/logo.svg");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const storedLogo = window.localStorage.getItem("dream-adventure-nepal-logo");
+    if (storedLogo) {
+      setLogoSrc(storedLogo);
+      return;
+    }
+
+    const storedContent = window.localStorage.getItem("dream-adventure-nepal-content");
+    if (storedContent) {
+      try {
+        const parsed = JSON.parse(storedContent);
+        if (parsed?.logoBase64) {
+          setLogoSrc(parsed.logoBase64);
+        }
+      } catch {
+        // ignore invalid JSON
+      }
+    }
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-2xl font-bold text-[#0B1F3A] hover:text-[#F97316] transition">
-          🏔️ Dream Adventure Nepal
+        <Link href="/" className="flex items-center gap-4 hover:text-[#F97316] transition">
+          <img src={logoSrc} alt="Dream Adventure Nepal logo" className="h-10 w-10 rounded-full object-cover border border-slate-200 bg-white" />
+          <span className="text-2xl font-bold text-[#0B1F3A]">Dream Adventure Nepal</span>
         </Link>
 
         {/* Desktop Navigation */}
