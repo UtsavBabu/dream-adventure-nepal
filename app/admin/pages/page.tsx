@@ -29,6 +29,42 @@ export default function PagesAdmin() {
         Edit homepage, about page, contact details, and upload your logo from here.
       </p>
 
+      <div className="mb-8 rounded-2xl bg-slate-800 p-6">
+        <h2 className="text-xl font-semibold mb-4">Quick Links to Other Admin Sections</h2>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href="/admin/tours"
+            className="rounded-full bg-[#F97316] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C]"
+          >
+            Manage Tours
+          </a>
+          <a
+            href="/admin/cities"
+            className="rounded-full bg-[#F97316] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C]"
+          >
+            Manage Cities
+          </a>
+          <a
+            href="/admin/attractions"
+            className="rounded-full bg-[#F97316] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C]"
+          >
+            Manage Attractions
+          </a>
+          <a
+            href="/admin/blog"
+            className="rounded-full bg-[#F97316] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C]"
+          >
+            Manage Blog
+          </a>
+          <a
+            href="/admin/gallery"
+            className="rounded-full bg-[#F97316] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C]"
+          >
+            Manage Gallery
+          </a>
+        </div>
+      </div>
+
       <div className="grid gap-10 lg:grid-cols-2">
         <section className="rounded-3xl bg-slate-800 p-8 shadow-xl ring-1 ring-slate-700">
           <h2 className="text-2xl font-semibold mb-4">Home Page</h2>

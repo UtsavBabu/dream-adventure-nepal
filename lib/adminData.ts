@@ -28,6 +28,26 @@ export type TourItem = {
   imageUrl?: string;
 };
 
+export type CityItem = {
+  id: string;
+  name: string;
+  description: string;
+  highlights: string[];
+  imageUrl?: string;
+};
+
+export type AttractionItem = {
+  id: string;
+  name: string;
+  type: string;
+  location: string;
+  description: string;
+  duration: string;
+  price: string;
+  imageUrl?: string;
+  itinerary?: string[];
+};
+
 export type ServiceItem = {
   id: string;
   title: string;
@@ -66,6 +86,8 @@ export type SiteContent = {
   contact: ContactInfo;
   services: ServiceItem[];
   portfolio: TourItem[];
+  cities: CityItem[];
+  attractions: AttractionItem[];
   gallery: GalleryItem[];
   blog: BlogItem[];
 };
@@ -156,6 +178,108 @@ export const defaultSiteContent: SiteContent = {
       maxAltitude: "4,130m",
       bestSeason: "Oct-Nov, Mar-Apr",
       description: "A stunning circuit with diverse landscapes and mountain views",
+    },
+  ],
+  cities: [
+    {
+      id: "city-1",
+      name: "Kathmandu",
+      description: "The vibrant capital city, a blend of ancient temples and modern culture.",
+      highlights: ["Swayambhunath Stupa", "Kathmandu Durbar Square", "Pashupatinath Temple"],
+      imageUrl: "https://images.unsplash.com/photo-1544008230-ac1e1fb4f4f4?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "city-2",
+      name: "Pokhara",
+      description: "Gateway to the Annapurna region, known for lakes and mountain views.",
+      highlights: ["Phewa Lake", "Davis Fall", "Sarangkot Sunrise"],
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "city-3",
+      name: "Lumbini",
+      description: "Birthplace of Buddha, a UNESCO World Heritage site.",
+      highlights: ["Maya Devi Temple", "Sacred Garden", "Monasteries"],
+      imageUrl: "https://images.unsplash.com/photo-1587135941948-670b381f08ce?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+  attractions: [
+    {
+      id: "attraction-1",
+      name: "Nagarkot Sunrise Trip & Day Hike with Lunch from Kathmandu",
+      type: "Hiking Tour",
+      location: "Nagarkot",
+      description: "Experience breathtaking sunrise views over the Himalayas with a guided hike and traditional Nepali lunch.",
+      duration: "1 Day",
+      price: "$150",
+      imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "attraction-2",
+      name: "Nature and Wildlife Tours",
+      type: "Wildlife Tour",
+      location: "Chitwan National Park",
+      description: "Explore Nepal's wildlife in Chitwan, home to rhinos, tigers, and elephants.",
+      duration: "2-3 Days",
+      price: "$250",
+      imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "attraction-3",
+      name: "Kathmandu to Annapurna Base Camp (ABC) 5-Day Trek",
+      type: "Multi-day Trek",
+      location: "Annapurna Region",
+      description: "A condensed trek to Annapurna Base Camp, offering stunning views and cultural experiences.",
+      duration: "5 Days",
+      price: "$650",
+      imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
+      itinerary: [
+        "Day 1: Drive from Kathmandu to Pokhara, then trek to Ghara (1,950m).",
+        "Day 2: Trek to Shikha (1,930m) via Australian Camp.",
+        "Day 3: Trek to Muktinath (3,800m), visit temples.",
+        "Day 4: Trek to Marpha (2,670m), explore the village.",
+        "Day 5: Trek to Tukuche (2,590m), drive back to Pokhara and Kathmandu.",
+      ],
+    },
+    {
+      id: "attraction-4",
+      name: "Everest Base Camp Trek",
+      type: "Multi-day Trek",
+      location: "Everest Region",
+      description: "The ultimate Himalayan adventure to the base of the world's highest peak.",
+      duration: "14 Days",
+      price: "$1,299",
+      imageUrl: "https://images.unsplash.com/photo-1510889612012-6fa7f8d5e9ff?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "attraction-5",
+      name: "Annapurna Circuit Trek",
+      type: "Multi-day Trek",
+      location: "Annapurna Region",
+      description: "A classic trek around the Annapurna massif, showcasing diverse landscapes.",
+      duration: "16-20 Days",
+      price: "$1,499",
+      imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "attraction-6",
+      name: "Manaslu Circuit Trek",
+      type: "Multi-day Trek",
+      location: "Manaslu Region",
+      description: "A challenging trek around Manaslu, offering remote trails and cultural immersion.",
+      duration: "14-16 Days",
+      price: "$1,399",
+      imageUrl: "https://images.unsplash.com/photo-1544008230-ac1e1fb4f4f4?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      id: "attraction-7",
+      name: "Langtang Valley Trek",
+      type: "Multi-day Trek",
+      location: "Langtang Region",
+      description: "A scenic trek through alpine meadows and traditional Tamang villages.",
+      duration: "8-10 Days",
+      price: "$799",
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80",
     },
   ],
   gallery: [
