@@ -1,200 +1,161 @@
+import Link from "next/link";
+
 export default function PortfolioPage() {
-  const treks = [
+  const tours = [
     {
-      title: "Everest Base Camp Trek",
-      duration: "14-16 Days",
-      difficulty: "Moderate",
-      altitude: "5,545 m",
-      highlight:
-        "Sherpa culture, Kala Patthar sunrise, and close-up views of Everest.",
-      image:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Annapurna Circuit Trek",
-      duration: "10-19 Days",
-      difficulty: "Moderate",
-      altitude: "5,416 m",
-      highlight:
-        "Diverse landscapes from jungle to arid highlands and Thorong La pass.",
-      image:
-        "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Manaslu Circuit Trek",
-      duration: "14-16 Days",
-      difficulty: "Hard",
-      altitude: "5,106 m",
-      highlight:
-        "Remote trail, Larkya La pass, and pristine mountain villages.",
-      image:
-        "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Langtang Valley Trek",
-      duration: "7-10 Days",
-      difficulty: "Easy to Moderate",
-      altitude: "4,773 m",
-      highlight:
-        "Close to Kathmandu, cultural villages, lakes, and the Langtang range.",
-      image:
-        "https://images.unsplash.com/photo-1517821365200-126fda2f88e0?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Upper Mustang Trek",
-      duration: "12-14 Days",
-      difficulty: "Moderate to Hard",
-      altitude: "3,810 m",
-      highlight:
-        "Tibetan culture, desert canyons, and restricted-access kingdom trails.",
-      image:
-        "https://images.unsplash.com/photo-1523144187755-76f762b4e8d4?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Gokyo Lakes Trek",
-      duration: "12+ Days",
+      id: 1,
+      name: "Everest Base Camp Trek",
+      duration: "14 Days",
       difficulty: "Challenging",
-      altitude: "5,357 m",
-      highlight:
-        "Turquoise glacial lakes, Gokyo Ri summit, and Everest region panoramas.",
-      image:
-        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      price: "$1,299",
+      maxAltitude: "5,364m",
+      bestSeason: "Sep-Oct, Mar-May",
+      description: "The world's most iconic trek to the base of Mount Everest",
+      icon: "🏔️",
     },
     {
-      title: "Annapurna Base Camp Trek",
-      duration: "5-13 Days",
+      id: 2,
+      name: "Annapurna Base Camp Trek",
+      duration: "10 Days",
       difficulty: "Moderate",
-      altitude: "4,130 m",
-      highlight:
-        "Mountain amphitheater views of Annapurna South, Machapuchare, and the range.",
-      image:
-        "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80",
+      price: "$899",
+      maxAltitude: "4,130m",
+      bestSeason: "Oct-Nov, Mar-Apr",
+      description: "A stunning circuit with diverse landscapes and mountain views",
+      icon: "🌄",
     },
     {
-      title: "Ghorepani Poon Hill Trek",
+      id: 3,
+      name: "Kathmandu Valley Cultural Tour",
+      duration: "3 Days",
+      difficulty: "Easy",
+      price: "$299",
+      maxAltitude: "1,400m",
+      bestSeason: "Year-round",
+      description: "Explore temples, monasteries, and the rich heritage of Nepal's capital",
+      icon: "🏛️",
+    },
+    {
+      id: 4,
+      name: "Langtang Valley Trek",
+      duration: "8 Days",
+      difficulty: "Moderate",
+      price: "$799",
+      maxAltitude: "3,570m",
+      bestSeason: "Sep-Nov, Mar-May",
+      description: "Close to Kathmandu with stunning Himalayan views and Tamang culture",
+      icon: "🏔️",
+    },
+    {
+      id: 5,
+      name: "Manali to Leh Adventure",
+      duration: "12 Days",
+      difficulty: "Challenging",
+      price: "$1,199",
+      maxAltitude: "5,328m",
+      bestSeason: "Jul-Aug",
+      description: "Thrilling high-altitude pass crossing with spectacular mountain scenery",
+      icon: "🚗",
+    },
+    {
+      id: 6,
+      name: "Pokhara Relaxation Package",
       duration: "5 Days",
-      difficulty: "Easy to Moderate",
-      altitude: "3,210 m",
-      highlight:
-        "Sunrise over the Annapurna range and rhododendron forests.",
-      image:
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Kanchenjunga Base Camp Trek",
-      duration: "14-28 Days",
-      difficulty: "Hard",
-      altitude: "5,388 m",
-      highlight:
-        "Wild eastern Nepal, remote trails, and very few other trekkers.",
-      image:
-        "https://images.unsplash.com/photo-1521295121783-8a321e0d45de?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      title: "Dhaulagiri Circuit Trek",
-      duration: "14+ Days",
-      difficulty: "Very Challenging",
-      altitude: "5,360 m",
-      highlight:
-        "High elevation camps, snow crossings, and a full circuit around Dhaulagiri.",
-      image:
-        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+      difficulty: "Easy",
+      price: "$599",
+      maxAltitude: "900m",
+      bestSeason: "Year-round",
+      description: "Lakeside relaxation, paragliding, and local experiences",
+      icon: "🏖️",
     },
   ];
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      <section className="bg-[#F8FAFC] py-24">
+    <main className="min-h-screen bg-gradient-to-b from-[#F8FAFC] to-white">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-[#0B1F3A] to-[#1a3a52] text-white py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <span className="rounded-full bg-orange-100 px-4 py-1 text-sm font-semibold text-[#F97316]">
-            Portfolio
+          <span className="inline-block rounded-full bg-[#F97316] px-4 py-1 text-sm font-medium text-white mb-4">
+            🗺️ Portfolio
           </span>
-          <h1 className="mt-6 text-5xl font-bold tracking-tight text-[#0B1F3A] sm:text-6xl">
-            The Top 10 Trekking Destinations We Have Completed in Nepal
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            These treks represent our best Himalayan experiences, from Everest Base Camp to the remote wilds of Kanchenjunga and Dhaulagiri. Every route below includes real itinerary details, altitude highlights, and the kind of expert support we deliver.
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">All Adventures</h1>
+          <p className="text-lg text-slate-200 max-w-2xl">
+            Explore our complete collection of guided treks, tours, and adventure experiences in Nepal.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-8 lg:grid-cols-2">
-          {treks.map((trek) => (
-            <article key={trek.title} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="h-64 overflow-hidden">
-                <img
-                  src={trek.image}
-                  alt={trek.title}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+      {/* Tours Grid */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {tours.map((tour) => (
+            <div
+              key={tour.id}
+              className="group rounded-2xl bg-white shadow-md ring-1 ring-slate-200 overflow-hidden transition duration-300 hover:shadow-2xl hover:-translate-y-2"
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-br from-[#0B1F3A] to-[#1a3a52] px-6 py-8 text-white">
+                <div className="text-5xl mb-2">{tour.icon}</div>
+                <h3 className="text-2xl font-bold">{tour.name}</h3>
               </div>
-              <div className="p-8">
-                <h2 className="text-2xl font-semibold text-[#0B1F3A]">
-                  {trek.title}
-                </h2>
-                <p className="mt-3 text-slate-600 leading-7">{trek.highlight}</p>
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-slate-50 p-4 text-sm font-medium text-slate-700">
-                    Duration
-                    <p className="mt-2 text-lg font-semibold text-[#0B1F3A]">{trek.duration}</p>
+
+              {/* Content */}
+              <div className="p-6">
+                <p className="text-slate-600 mb-4">{tour.description}</p>
+
+                {/* Details Grid */}
+                <div className="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-slate-200">
+                  <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold">Duration</p>
+                    <p className="text-sm font-bold text-[#0B1F3A]">⏱️ {tour.duration}</p>
                   </div>
-                  <div className="rounded-2xl bg-slate-50 p-4 text-sm font-medium text-slate-700">
-                    Difficulty
-                    <p className="mt-2 text-lg font-semibold text-[#0B1F3A]">{trek.difficulty}</p>
+                  <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold">Difficulty</p>
+                    <p className="text-sm font-bold text-[#F97316]">{tour.difficulty}</p>
                   </div>
-                  <div className="rounded-2xl bg-slate-50 p-4 text-sm font-medium text-slate-700">
-                    Max Altitude
-                    <p className="mt-2 text-lg font-semibold text-[#0B1F3A]">{trek.altitude}</p>
+                  <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold">Altitude</p>
+                    <p className="text-sm font-bold text-[#0B1F3A]">⛰️ {tour.maxAltitude}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 uppercase font-semibold">Best Season</p>
+                    <p className="text-sm font-bold text-[#0B1F3A]">📅 {tour.bestSeason}</p>
                   </div>
                 </div>
+
+                {/* Price and CTA */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs text-slate-500 mb-1">Starting From</p>
+                    <p className="text-3xl font-bold text-[#F97316]">{tour.price}</p>
+                  </div>
+                  <Link
+                    href="/contact"
+                    className="rounded-full bg-[#F97316] px-6 py-2 text-sm font-semibold text-white transition hover:bg-[#EA580C] whitespace-nowrap"
+                  >
+                    Book
+                  </Link>
+                </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#0B1F3A] py-20 text-white">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-3xl font-bold">Designed for every trekker</h2>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-                Whether you want a challenging high-pass expedition or a shorter cultural trek, our portfolio shows the depth of our Nepal trekking experience. We customize each trip for safety, pace, and local immersion.
-              </p>
-            </div>
-            <div className="space-y-4 rounded-3xl bg-[#11263F] p-10">
-              <div>
-                <h3 className="text-xl font-semibold text-white">Expert route knowledge</h3>
-                <p className="mt-3 text-slate-300">We know the best seasons, acclimatization plans, and permit requirements for every high-altitude itinerary.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white">Local support</h3>
-                <p className="mt-3 text-slate-300">Our team works with trusted Nepali guides, porters, and lodges to keep your trek safe and comfortable.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white">Real trek records</h3>
-                <p className="mt-3 text-slate-300">These treks are not theoretical — this portfolio represents routes we have completed and refined in Nepal.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="rounded-3xl bg-[#F97316] px-8 py-12 text-white shadow-xl">
-          <h2 className="text-3xl font-bold">Ready to book your next Nepal trekking adventure?</h2>
-          <p className="mt-4 max-w-2xl text-slate-100 leading-7">
-            Contact us to plan a custom itinerary for Everest Base Camp, Annapurna Circuit, Gokyo Lakes, Upper Mustang, Kanchenjunga, Dhaulagiri Circuit, and more.
-          </p>
-          <div className="mt-8">
-            <a
+      {/* CTA */}
+      <section className="bg-white border-t border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="rounded-2xl bg-gradient-to-r from-[#0B1F3A] to-[#1a3a52] p-12 text-white">
+            <h2 className="text-3xl font-bold mb-4">Can't Find Your Ideal Trek?</h2>
+            <p className="text-slate-200 mb-8 max-w-2xl">
+              We offer custom itineraries tailored to your preferences, fitness level, and interests.
+            </p>
+            <Link
               href="/contact"
-              className="inline-flex rounded-full bg-white px-6 py-3 font-semibold text-[#0B1F3A] transition hover:bg-slate-100"
+              className="inline-block rounded-full bg-[#F97316] px-8 py-4 font-semibold text-white transition hover:bg-[#EA580C]"
             >
-              Contact Us
-            </a>
+              Create Custom Itinerary
+            </Link>
           </div>
         </div>
       </section>
